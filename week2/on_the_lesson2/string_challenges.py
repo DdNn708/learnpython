@@ -34,6 +34,6 @@ print("-------------------")
 
 
 # Вывести усреднённую длину слова.
-sentence = 'Мы приехали в гости'  #FIXME нужно поделить длину слова на количество слов
+sentence = 'Мы приехали в гости'
 for word in sentence.split():
     print(len(word)/len(sentence.split()))
