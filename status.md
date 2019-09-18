@@ -25,4 +25,3 @@
 - [] csv_files.py
 - [] date_and_time.py
 - [] files.py
-- [] referat.txt
