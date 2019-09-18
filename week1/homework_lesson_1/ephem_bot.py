@@ -9,12 +9,15 @@
 * При помощи условного оператора if и ephem.constellation научите 
   бота отвечать, в каком созвездии сегодня находится планета.
 """
+# import sys
+# sys.path.append('/Users/dnv/projects/learnpython/week1/homework_lesson_1/settings.py')
+# print(sys.path)
+
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 from datetime import datetime
 import ephem
 import logging
-import settings
-
+import settings  # Fixme как добавить модуль в область видимости импорта
 
 
 logging.basicConfig(

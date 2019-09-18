@@ -3,4 +3,5 @@
 settings.py
 .idea/
 .DS_Store
-
+lectures.py
+env/
