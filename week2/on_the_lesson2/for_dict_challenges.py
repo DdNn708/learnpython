@@ -1,6 +1,6 @@
 
 
-def name_counter(school_class: list):
+def name_counter(school_class: list):  # Fixme этот не оптимален по асимптотике
     """Функция счетает повторяющиеся имена и складывает результаты в словарь, где key это имя,
     а value это количество повторений"""
     count_result = {}
@@ -21,6 +21,20 @@ def name_counter(school_class: list):
                 count_result[school_class[k]['first_name']] = count_result.get(school_class[k]['first_name'], 0) + 1
                 matching_map[k] = True
     return count_result  # dict
+
+
+def name_counter_v2(list_with_dicts: list):  # Скорректированная функция
+    """Функция счетает повторяющиеся имена и складывает результаты в словарь, где key это имя,
+        а value это количество повторений"""
+    count_result = {}
+
+    for element in list_with_dicts:
+        for key, value in element.items():
+            if bool(count_result.get(value)):
+                count_result[value] += 1
+            else:
+                count_result[value] = count_result.get(value, 1)
+    return count_result  # dict with results
 
 
 def most_frequent_names(dictionary: dict):
@@ -47,7 +61,8 @@ students = [
   {'first_name': 'Петя'},
 ]
 
-count_result = name_counter(students)
+count_result = name_counter_v2(students)
+
 
 for key, value in count_result.items():
     print(key, ": ", value)
@@ -70,14 +85,14 @@ students = [
   {'first_name': 'Оля'},
 ]
 
-count_result = name_counter(students)
+count_result = name_counter_v2(students)
 
 # Что бы перед глазами был результат частотного анализа
 for key, value in count_result.items():
     print(key, ": ", value)
 
-max_key = most_frequent_names(count_result)
-print(f"Самое частое имя среди учеников: {max_key}")
+most_frequent_name = dict(sorted(count_result.items(), key=lambda name: name[1], reverse=True))
+print(f"Самое частое имя среди учеников: {next(iter(most_frequent_name))}")
 
 # Пример вывода:
 # Самое частое имя среди учеников: Маша
@@ -99,12 +114,12 @@ school_students = [
   ]
 ]
 
-
-print(school_students)
-for i in range(len(school_students)):
-    count_result_in_dict = name_counter(school_students[i])
-    most_frequent_name = most_frequent_names(count_result_in_dict)
-    print(f"Самое частое имя в классе {i+1}: {most_frequent_name}")
+class_num = 1
+for element in school_students:
+    count_result = name_counter_v2(element)
+    most_frequent_name = dict(sorted(count_result.items(), key=lambda name: name[1], reverse=True))
+    print(f"Самое частое имя в классе {class_num}: {next(iter(most_frequent_name))}")
+    class_num += 1
 
 
 # Пример вывода:
@@ -126,15 +141,6 @@ is_male = {
   'Олег': True,
   'Миша': True,
 }
-
-
-def gender_definer(first_name: str):
-    pass
-    # for i in range(len(names)):
-    #     if is_male[names[i]]:
-    #         print(f"{names[i]} пол: муж")
-    #     else:
-    #         print(f"{names[i]} пол: жен")
 
 
 for school_class in school:
@@ -179,12 +185,16 @@ for school_class in school:
             school_class['gender']['female'] += 1
 
 for school_class in school:
-    print(most_frequent_names(school_class['gender']))
-    gender = most_frequent_names(school_class['gender'])
-    if 'female' in gender:
-        print(f'Больше всего девочек в классе {school_class["class"]}')
-    else:
-        print(f'Больше всего мальчиков в классе {school_class["class"]}')
+    print(school_class)
+    for element in school_class.items():
+        pass
+        # most_frequent_name = dict(sorted(element['gender'], key=lambda name: name[1], reverse=True))
+    # print(most_frequent_name)
+    # gender = most_frequent_names(school_class['gender'])
+    # if 'female' in gender:
+    #     print(f'Больше всего девочек в классе {school_class["class"]}')
+    # else:
+    #     print(f'Больше всего мальчиков в классе {school_class["class"]}')
 
 
 # Пример вывода:

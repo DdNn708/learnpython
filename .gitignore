@@ -1,7 +1,10 @@
 *.pyc
 *.log
-settings.py
+
 .idea/
-.DS_Store
-lectures.py
 env/
+.DS_Store
+
+settings.py
+lectures.py
+cities_list.txt
