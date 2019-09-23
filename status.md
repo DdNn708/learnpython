@@ -18,10 +18,21 @@
 
 ### week2/on_the_lesson2
 - [+] for_challenges.py
-- [] for_dict_challenges.py
+- [] for_dict_challenges.py  `Вношу исправления по комментариям. Остановился на задании 5`
 - [+] string_challenges.py
 
 ### week2/homework2
 - [] csv_files.py
 - [] date_and_time.py
 - [] files.py
+
+### week3/on_the_lesson3
+- [] stops
+- [] subway_repair
+- [] stops_near_subways
+
+### Долг
+- доделать функцию бота игра в города, 
+подумать над копированием глобальной переменной и сохранением результата игры в ней
+- доделать функцию бота калькулятор
+- пройти koans до конца
