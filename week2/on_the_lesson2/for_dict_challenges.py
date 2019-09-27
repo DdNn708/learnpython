@@ -23,7 +23,7 @@ def name_counter(school_class: list):  # Fixme этот не оптимален 
     return count_result  # dict
 
 
-def name_counter_v2(list_with_dicts: list):  # Скорректированная функция
+def name_counter_v2(list_with_dicts: list):  # Fixme этот тож так себе
     """Функция счетает повторяющиеся имена и складывает результаты в словарь, где key это имя,
         а value это количество повторений"""
     count_result = {}
@@ -37,7 +37,17 @@ def name_counter_v2(list_with_dicts: list):  # Скорректированна�
     return count_result  # dict with results
 
 
-def most_frequent_names(dictionary: dict):
+def count_names_v3(students: list):
+    count_result = {}
+    for student in students:
+        if student['first_name'] in count_result:
+            count_result[student['first_name']] += 1
+        else:
+            count_result[student['first_name']] = 1
+    return count_result  # dict with results
+
+
+def get_most_frequent_name(dictionary: dict):
     """Функция находит максимальное значение среди values и возвращает key"""
     max_value = 0
     max_key = ""
@@ -61,7 +71,7 @@ students = [
   {'first_name': 'Петя'},
 ]
 
-count_result = name_counter_v2(students)
+count_result = count_names_v3(students)
 
 
 for key, value in count_result.items():
@@ -85,7 +95,7 @@ students = [
   {'first_name': 'Оля'},
 ]
 
-count_result = name_counter_v2(students)
+count_result = count_names_v3(students)
 
 # Что бы перед глазами был результат частотного анализа
 for key, value in count_result.items():
@@ -114,13 +124,10 @@ school_students = [
   ]
 ]
 
-class_num = 1
-for element in school_students:
-    count_result = name_counter_v2(element)
+for class_num, element in enumerate(school_students, 1):
+    count_result = count_names_v3(element)
     most_frequent_name = dict(sorted(count_result.items(), key=lambda name: name[1], reverse=True))
     print(f"Самое частое имя в классе {class_num}: {next(iter(most_frequent_name))}")
-    class_num += 1
-
 
 # Пример вывода:
 # Самое частое имя в классе 1: Вася
@@ -146,9 +153,9 @@ is_male = {
 for school_class in school:
     m_counter = 0
     f_counter = 0
-    for students in school_class['students']:
-        print(students)
-        if is_male[students['first_name']]:
+    for student in school_class['students']:
+        print(student)
+        if is_male[student['first_name']]:
             m_counter += 1
         else:
             f_counter += 1

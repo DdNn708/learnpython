@@ -39,21 +39,13 @@ if __name__ == '__main__':
 
     with open(OUTPUT_FILE, 'r', encoding='utf-8') as f:
         # Разбиваем первую строку на список, очищая от символов '"' двойных кавычек, признаков начала и окончания значения.
-        fields = []
-        for line in f:
-            fields = line.split(';')
-            break
+        fields = next(f).split(';')
         fields = list(map(lambda x: x.strip('"'), fields))
 
         # Вывод первой строки, исключительно для удобства восприятия
         print(fields, "\n")
 
         reader = csv.DictReader(f, fields, delimiter=';', quotechar='"')
-
-        # # Код позволяет посмотреть определенное количество строк в файле, а не все сразу
-        # # Необходимо только на этапе написания программы
-        # for _, row in zip(range(10), reader):
-        #     print(row)
 
         # Идем по файлы с данными построчно, и из каждой строки передаем в функция счетчик параметр,
         # по которому ведем подсчет
@@ -62,16 +54,6 @@ if __name__ == '__main__':
                 any_name=row['Street'],     # параметр по которому ведем подсчет
                 dictionary=count_result)    # словрь в который пишем результат подсчета
 
-        # Так можем вывести построчно все данные из предварительно отсортированного словаря со счетчиками
-        # for street in sorted(count_result.items(), key=lambda x: x[1], reverse=True):
-        #     print(street)
-
-        # Так можем вывести в виде списка все данные из предварительно отсортированного словаря со счетчиками
-        # print(sorted(count_result.items(), key=lambda x: x[1], reverse=True))
-
         # Так можем вывести самую первую запись из отсортированного по значениям счетчика словаря
-        print(next(iter(dict(sorted(count_result.items(), key=lambda x: x[1], reverse=True)).items())))
-
-    # Так можно представить работу функции 'lambda x: x.strip('"')'
-    # def something(x):
-    #     return x.strip('"')
+        tmp = sorted(count_result.items(), key=lambda x: x[1], reverse=True)
+        print(next(iter(dict(tmp).items())))

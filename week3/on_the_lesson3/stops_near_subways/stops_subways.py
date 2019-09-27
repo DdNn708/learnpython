@@ -33,20 +33,17 @@ if __name__ == '__main__':
     start = datetime.now()
     print(f'Скрипт начал работу в: {start}')
     count_result = {}
-    with open(SUBWAY, 'r', encoding='utf-8') as subway_data:
-        reader_subway_data = json.load(subway_data)
+    with open(SUBWAY, 'r', encoding='utf-8') as f:
+        subway_data = json.load(f)
 
-        for row_subway in reader_subway_data:
+        for row_subway in subway_data:
             if row_subway['geoData']['coordinates']:
                 subway_coordinates = tuple(row_subway['geoData']['coordinates'])
 
-            with open(STOPS, 'r', encoding='utf-8') as stops_data:
-                fields = []
-                for row_stops in stops_data:
-                    fields = row_stops.split(';')
-                    break
+            with open(STOPS, 'r', encoding='utf-8') as k:
+                fields = next(k).split(';')
                 fields = list(map(lambda x: x.strip('"'), fields))
-                reader_stops_data = csv.DictReader(stops_data, fields, delimiter=';', quotechar='"')
+                reader_stops_data = csv.DictReader(k, fields, delimiter=';', quotechar='"')
 
                 for dictionary in reader_stops_data:
                     if len(str(dictionary['geoData'])) > 7:

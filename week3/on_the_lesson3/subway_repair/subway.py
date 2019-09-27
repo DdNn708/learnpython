@@ -18,11 +18,11 @@ def converter():
                 f_input.write(line)
 
 
-def date_entry_check(string_with_time: str):
-    time_in_list: list = string_with_time.split('-')
+def date_entry_check(date_string: str):
+    dates_list: list = date_string.split('-')
     today = datetime.today()
-    date1 = datetime.strptime(time_in_list[0], '%d.%m.%Y')
-    date2 = datetime.strptime(time_in_list[1], '%d.%m.%Y')
+    date1 = datetime.strptime(dates_list[0], '%d.%m.%Y')
+    date2 = datetime.strptime(dates_list[1], '%d.%m.%Y')
     if date1 <= today <= date2:
         return True
     else:
