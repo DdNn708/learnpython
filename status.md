@@ -36,11 +36,9 @@
 
 ### week3/on_the_lesson3
 - [+] stops
-- [+] stops_near_subways `на модули не разбивал`
+- [+] stops_near_subways `на модули не разбивал, отрабатывает 40 мин`
 - [+] subway_repair   
 
-### Долг
-- пройти koans до конца `Остановился на test_string_empty` раздел `strings`
 
 ### Почитать
 - почитать про bash-утилиту iconv и модуль subproces
