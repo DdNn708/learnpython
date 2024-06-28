@@ -57,3 +57,4 @@ if __name__ == '__main__':
         # Так можем вывести самую первую запись из отсортированного по значениям счетчика словаря
         tmp = sorted(count_result.items(), key=lambda x: x[1], reverse=True)
         print(next(iter(dict(tmp).items())))
+        print(tmp)
